@@ -7,10 +7,15 @@
 \usepackage{amssymb,indentfirst,tasks}
 
 \usepackage{amsthm}
+\newtheorem{thm}{Теорема}[chapter]
+\newtheorem{ax}{Аксиома}[chapter]
+\newtheorem*{ax*}{Аксиома}
+\newtheorem{impl}{Следствие}[chapter]
 \theoremstyle{definition}
-\newtheorem{defn}{Определение}
+\newtheorem{defn}{Определение}[chapter]
 \theoremstyle{remark}
-\newtheorem{ex}{Пример}
+\newtheorem{ex}{Пример}[chapter]
+\newtheorem*{rem*}{Примечание}
 
 \title{Лекции по Дискретной математике}
 \author{Соколов П.П.}
@@ -22,5 +27,6 @@
 \tableofcontents{}
 
 \input{lecture01.tex}
+\input{lecture02.tex}
 
 \end{document}
