@@ -1,0 +1,54 @@
+\chapter{Введение в комбинаторику}
+
+\begin{thm}[Мощность объединения]\[
+  |A\cup B| = |A| + |B| - |A\cap B|
+\]\end{thm}
+\begin{proof}
+  TODO. Неформально: нужно подсчитать, сколько раз произвольный элемент
+  универсума оказался посчитан в каждой из частей.
+\end{proof}
+
+\begin{thm}[Формула включений-исключений]\[
+  \left|\bigcup_{i=1}^n U_i\right|
+  =\sum_{\substack{S\subseteq[n]\\ S\ne\varnothing}}
+  (-1)^{|S|+1}\left|\bigcap_{i\in S}U_i\right|
+\]\end{thm}
+\begin{proof}
+  Индукцией по $n$.
+
+  \textbf{База}. $n=0$.
+  \[
+    \left|\bigcup_{i=1}^0 U_i\right| = |\varnothing| = 0
+    = \sum_{\substack{S\subseteq[0]\\ S\ne\varnothing}}\ldots
+  \]
+
+  \textbf{Переход}. $n\to(n+1)$.
+  \begin{multline*}
+    \left|\bigcup_{i=1}^{n+1}U_i\right|
+    = \left|\left(\bigcup_{i=1}^n U_i\right)\cup U_{n+1}\right|
+    \stackrel{\text{Мощность объединения}}{=}
+    \\=\left|\bigcup_{i=1}^n U_i\right|+\left|U_{n+1}\right|
+    - \left|\left(\bigcup_{i=1}^n U_i\right)\cap U_{n+1}\right|
+    \stackrel{\text{Дистрибутивность $\cup$ и $\cap$}}{=}
+    \\=\left|\bigcup_{i=1}^n U_i\right|+\left|U_{n+1}\right|
+    - \left|\bigcup_{i=1}^n\left(U_i\cap U_{n+1}\right)\right|
+    \stackrel{\text{Предположение индукции}}{=}
+    \\=\left(\sum_{\substack{S\subseteq[n]\\ S\ne\varnothing}}(-1)^{|S|+1}
+    \left|\bigcap_{i\in S}U_i\right|\right)+\left|U_{n+1}\right|
+    -\left(\sum_{\substack{T\subseteq[n]\\ T\ne\varnothing}}(-1)^{|T|+1}
+    \left|\bigcap_{i\in T}\left(U_i\cap U_{n+1}\right)\right|\right)
+    =\\\stackrel{S=T\cup\{n+1\}}{=}
+    \left(\sum_{\substack{S\subseteq[n+1]\\ S\ne\varnothing\\ (n+1)\not\in S}}
+    (-1)^{|S|+1}\left|\bigcap_{i\in S} U_i\right|\right)+\left|U_{n+1}\right|
+    -\left(\sum_{\substack{S\subseteq[n+1]\\ S\ne\{n+1\}\\ (n+1)\in S}}
+    (-1)^{|S|}\left|\bigcap_{i\in S} U_i\right|\right)
+    =\\=
+    \left(\sum_{\substack{S\subseteq[n+1]\\ S\ne\varnothing\\ (n+1)\not\in S}}
+    (-1)^{|S|+1}\left|\bigcap_{i\in S} U_i\right|\right)
+    +\left(\sum_{\substack{S\subseteq[n+1]\\ (n+1)\in S}}
+    (-1)^{|S|+1}\left|\bigcap_{i\in S} U_i\right|\right)
+    =\\=
+    \sum_{\substack{S\subseteq[n+1]\\ S\ne\varnothing}}(-1)^{|S|+1}
+    \left|\bigcap_{i\in S}U_i\right|
+  \end{multline*}
+\end{proof}
